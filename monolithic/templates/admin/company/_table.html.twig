@@ -1,0 +1,26 @@
+<div class="table-responsive">
+    <table id="datatable" class="table nowrap w-100">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Secteur</th>
+            <th>Site Web</th>
+            <th>Ajouté/Modifié par</th>
+            <th>Ajouté/Modifié le</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for company in companies %}
+            <tr>
+                <td>{{ company.title }}</td>
+                <td>{{ company.sector }}</td>
+                <td>{{ company.website }}</td>
+                <td>{{ company.createdBy.displayName }} / {{ company.updatedBy ? company.updatedBy.displayName : '-' }}</td>
+                <td>{{ company.createdAt | date('d-m-Y') }} / {{ company.updatedAt ? (company.updatedAt |date('d-m-Y')) : '-' }}</td>
+                <td><a href="{{ path('admin_company_edit',{'id': company.id}) }}" class="btn btn-sm btn-info"><i class="uil-pen"></i></a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

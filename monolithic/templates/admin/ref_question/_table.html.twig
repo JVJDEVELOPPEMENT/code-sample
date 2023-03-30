@@ -1,0 +1,26 @@
+<div class="table-responsive">
+    <table id="datatable" class="table nowrap w-100">
+        <thead>
+        <tr>
+            <th>Intitulé</th>
+            <th>Type</th>
+            <th>Posable</th>
+            <th>Ajouté/Modifié par</th>
+            <th>Ajouté/Modifié le</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for refQuestion in refQuestions %}
+                <tr>
+                    <td>{{ refQuestion.title }}</td>
+                    <td>{{ refQuestion.inputType }}</td>
+                    <td>{{ refQuestion.isAskable ? '<span class="text-success"><i class="uil-check-circle"></i></span>' : '<span class="text-danger"><i class="uil-times-circle"></i></span>' }}</td>
+                    <td>{{ refQuestion.createdBy.displayName }} / {{ refQuestion.updatedBy ? refQuestion.updatedBy.displayName : '-' }}</td>
+                    <td>{{ refQuestion.createdAt | date('d-m-Y') }} / {{ refQuestion.updatedAt ? (refQuestion.updatedAt |date('d-m-Y')) : '-' }}</td>
+                    <td><a href="{{ path('admin_ref_question_edit',{'id': refQuestion.id}) }}" class="btn btn-sm btn-info"><i class="uil-pen"></i></a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

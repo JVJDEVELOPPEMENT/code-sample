@@ -1,0 +1,37 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="mb-3 text-uppercase"><i class="mdi mdi-cards-variant me-1"></i>
+            Candidatures
+        </h5>
+        {% if candidatures | length > 0 %}
+            <div class="table-responsive">
+                <table id="datatable"  class="table table-borderless table-nowrap mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Id</th>
+                            <th>Examen</th>
+                            <th>Quiz</th>
+                            <th>Résultat</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for candidature in candidatures %}
+                            <tr>
+                                <td>{{ candidature.id }}</td>
+                                <td>{{ candidature.refExamen.title }}</td>
+                                <td>{{ candidature.quiz.status }}</td>
+                                <td>{{ candidature.result ? (candidature.result | raw) : ' - ' }}</td>
+                                <td><a href="{{ path('admin_candidature_show',{'id' : candidature.id}) }}" class="btn btn-sm btn-info"><i class="uil-eye"></i></a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div>
+                <p>Aucune candidature n'a encore été envoyée au candidat.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>

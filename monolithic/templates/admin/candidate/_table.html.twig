@@ -1,0 +1,26 @@
+<div class="table-responsive">
+    <table id="datatable" class="table nowrap w-100">
+        <thead>
+        <tr>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Ajouté/Modifié par</th>
+            <th>Ajouté/Modifié le</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for candidate in candidates %}
+            <tr>
+                <td>{{ candidate.firstName }}</td>
+                <td>{{ candidate.lastName }}</td>
+                <td>{{ candidate.email }}</td>
+                <td>{{ candidate.createdBy.displayName }} / {{ candidate.updatedBy ? candidate.updatedBy.displayName : '-' }}</td>
+                <td>{{ candidate.createdAt | date('d-m-Y') }} / {{ candidate.updatedAt ? (candidate.updatedAt |date('d-m-Y')) : '-' }}</td>
+                <td><a href="{{ path('admin_candidate_profile',{'id': candidate.id}) }}" class="btn btn-sm btn-info"><i class="uil-eye"></i></a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,26 @@
+<div class="table-responsive">
+    <table id="datatable" class="table nowrap w-100">
+        <thead>
+        <tr>
+            <th>Intitulé</th>
+            <th>Nombre de Question</th>
+            <th>Minutes pour répondre</th>
+            <th>Ajouté/Modifié par</th>
+            <th>Ajouté/Modifié le</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for refExamen in refExamens %}
+            <tr>
+                <td>{{ refExamen.title }}</td>
+                <td>{{ refExamen.numberOfQuestions }}</td>
+                <td>{{ refExamen.numberOfMinutesToAnswer }}</td>
+                <td>{{ refExamen.createdBy.displayName }} / {{ refExamen.updatedBy ? refExamen.updatedBy.displayName : '-' }}</td>
+                <td>{{ refExamen.createdAt | date('d-m-Y') }} / {{ refExamen.updatedAt ? (refExamen.updatedAt |date('d-m-Y')) : '-' }}</td>
+                <td><a href="{{ path('admin_ref_examen_edit',{'id': refExamen.id}) }}" class="btn btn-sm btn-info"><i class="uil-pen"></i></a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,26 @@
+<div class="table-responsive">
+    <table id="datatable" class="table nowrap w-100">
+        <thead>
+        <tr>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Ajouté/Modifié par</th>
+            <th>Ajouté/Modifié le</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.firstName }}</td>
+                    <td>{{ user.lastName }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.createdBy.displayName }} / {{ user.updatedBy ? user.updatedBy.displayName : '-' }}</td>
+                    <td>{{ user.createdAt | date('d-m-Y') }} / {{ user.updatedAt ? (user.updatedAt |date('d-m-Y')) : '-' }}</td>
+                    <td><a href="{{ path('super_admin_administrateur_edit',{'id': user.id}) }}" class="btn btn-sm btn-info"><i class="uil-pen"></i></a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

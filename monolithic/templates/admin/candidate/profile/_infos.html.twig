@@ -1,0 +1,17 @@
+<div class="card text-center">
+    <div class="card-body">
+        <img src="{{ asset('theme/assets/images/users/avatar_user.png') }}" class="rounded-circle avatar-lg img-thumbnail"
+             alt="profile-image">
+
+        <h4 class="mb-0 mt-2">{{ candidate.firstName }} {{ candidate.lastName }}</h4>
+        <p class="text-muted font-14">Candidat</p>
+
+        <a href="{{ path('admin_candidate_edit',{'id': candidate.id}) }}" type="button" class="btn btn-info btn-sm mb-2"><i class="uil-pen"></i> Modifier</a>
+
+        <div class="text-start mt-3">
+            <h4 class="font-13 text-uppercase">Coordonnées :</h4>
+            <p class="text-muted mb-2 font-13"><strong>Nom complet :</strong> <span class="ms-2">{{ candidate.firstName }} {{ candidate.lastName }}</span></p>
+            <p class="text-muted mb-2 font-13"><strong>Email :</strong> <span class="ms-2 ">{{ candidate.email }}</span></p>
+        </div>
+    </div> <!-- end card-body -->
+</div> <!-- end card -->

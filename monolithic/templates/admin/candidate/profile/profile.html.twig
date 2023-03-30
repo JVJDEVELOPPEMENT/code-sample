@@ -1,0 +1,40 @@
+{% extends "admin/base_admin.html.twig" %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Candidat</a></li>
+                        <li class="breadcrumb-item active">Profil</li>
+                    </ol>
+                </div>
+                <h4 class="page-title">Candidat</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <a href="{{ path('admin_candidate_index') }}" class="btn btn-dark"><i class="uil-arrow-circle-left"></i> Revenir</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include "admin/common/_flash.html.twig" %}
+
+    <div class="row">
+        <div class="col-xl-4 col-lg-5">
+            {% include "admin/candidate/profile/_infos.html.twig" %}
+        </div>
+        <div class="col-xl-8 col-lg-7">
+            {% include "admin/candidate/profile/_action_button.html.twig" %}
+            {% include "admin/candidate/candidature/_table_candidature.html.twig" %}
+        </div>
+    </div>
+
+{% endblock %}

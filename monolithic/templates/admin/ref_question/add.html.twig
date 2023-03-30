@@ -1,0 +1,47 @@
+{% extends "admin/base_admin.html.twig" %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Question</a></li>
+                        <li class="breadcrumb-item active">Ajouter</li>
+                    </ol>
+                </div>
+                <h4 class="page-title">Question</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <a href="{{ path('admin_ref_question_index') }}" class="btn btn-dark"><i class="uil-arrow-circle-left"></i> Revenir</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include "admin/common/_flash.html.twig" %}
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div>
+                        <h4 class="header-title">Ajouter une question</h4>
+                    </div>
+                    <p class="text-muted font-14">
+                        Ajouter une question, puis ajouter les réponses.
+                    </p>
+                    {% include "admin/common/_form.html.twig" with {"form": formRefQuestion} %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

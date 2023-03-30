@@ -1,0 +1,49 @@
+{% for quizQuestion in quizQuestions %}
+    {% if quizQuestion.isAnsweredCorrectly == true %}
+        <div class="row">
+            <div class="col-12">
+                <div class="card border border-success">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="card-title">{{ quizQuestion.title }}</h5>
+                        <p class="mb-2 font-13">{{ quizQuestion.inputType }}</p>
+                    </div>
+                    <div class="card-body">
+                        {% for quizAnswer in quizQuestion.quizAnswers %}
+                            <p class="card-text">
+                                {{ quizAnswer.title }}
+                                {% if quizAnswer.isSelected == true %}
+                                    <span class="text-success"><i class="uil-check-circle"></i></span>
+                                {% endif %}
+                            </p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="row">
+            <div class="col-12">
+                <div class="card border border-danger">
+                    <div class="card-header bg-danger text-white">
+                        <h5 class="card-title">{{ quizQuestion.title }}</h5>
+                        <p class="mb-2 font-13">{{ quizQuestion.inputType }}</p>
+                    </div>
+                    <div class="card-body">
+                        {% for quizAnswer in quizQuestion.quizAnswers %}
+                            <p class="card-text">
+                                {{ quizAnswer.title }}
+                                {% if quizAnswer.isSelected == true and quizAnswer.isCorrect != true %}
+                                    <span class="text-danger"><i class="uil-times-circle"></i></span>
+                                {% elseif quizAnswer.isSelected == true and quizAnswer.isCorrect == true %}
+                                    <span class="text-success"><i class="uil-check-circle"></i></span>
+                                {% elseif quizAnswer.isSelected != true and quizAnswer.isCorrect == true %}
+                                    <span class="text-info">(Réponse Manquante)</span>
+                                {% endif %}
+                            </p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endfor %}

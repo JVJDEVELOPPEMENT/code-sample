@@ -1,0 +1,110 @@
+<div class="leftside-menu">
+
+    <!-- Brand Logo Light -->
+    <a href="{{ path('admin_home') }}" class="logo logo-light">
+                    <span class="logo-lg">
+                          J2
+                    </span>
+        <span class="logo-sm">
+                    J2
+                    </span>
+    </a>
+
+    <!-- Brand Logo Dark -->
+    <a href="{{ path('admin_home') }}" class="logo logo-dark">
+                    <span class="logo-lg">
+                        J2
+                    </span>
+        <span class="logo-sm">
+                          J2
+                    </span>
+    </a>
+
+    <!-- Sidebar Hover Menu Toggle Button -->
+    <div class="button-sm-hover" data-bs-toggle="tooltip" data-bs-placement="right" title="Show Full Sidebar">
+        <i class="ri-checkbox-blank-circle-line align-middle"></i>
+    </div>
+
+    <!-- Full Sidebar Menu Close Button -->
+    <div class="button-close-fullsidebar">
+        <i class="ri-close-fill align-middle"></i>
+    </div>
+
+    <!-- Sidebar -left -->
+    <div class="h-100" id="leftside-menu-container" data-simplebar>
+        <!-- Leftbar User -->
+        <div class="leftbar-user">
+            <a href="">
+                <img src="" alt="user-image" height="42" class="rounded-circle shadow-sm">
+                <span class="leftbar-user-name mt-2">Administrateur</span>
+            </a>
+        </div>
+
+        <!--- Sidemenu -->
+        <ul class="side-nav">
+            {% if is_granted('ROLE_SUPER_ADMIN') %}
+                <li class="side-nav-title">ADMINISTRATION</li>
+
+                <li class="side-nav-item">
+                    <a href="{{ path('super_admin_administrateur_index') }}" class="side-nav-link">
+                        <i class="uil-users-alt"></i>
+                        <span> ADMINISTRATEUR </span>
+                    </a>
+                </li>
+            {% endif %}
+
+            <li class="side-nav-title">RÉFÉRENTIEL</li>
+
+            <li class="side-nav-item">
+                <a href="{{ path('admin_ref_question_index') }}" class="side-nav-link">
+                    <i class="uil-comment-question"></i>
+                    <span> QUESTION </span>
+                </a>
+            </li>
+
+            <li class="side-nav-item">
+                <a href="{{ path('admin_ref_examen_index') }}" class="side-nav-link">
+                    <i class="uil-game-structure"></i>
+                    <span> EXAMEN </span>
+                </a>
+            </li>
+
+            <li class="side-nav-title">CANDIDATURE</li>
+
+            <li class="side-nav-item">
+                <a href="{{ path('admin_candidate_index') }}" class="side-nav-link">
+                    <i class="uil-graduation-hat"></i>
+                    <span> CANDIDAT </span>
+                </a>
+            </li>
+
+            <li class="side-nav-item">
+                <a href="{{ path('admin_candidature_multi') }}" class="side-nav-link">
+                    <i class="uil-graduation-hat"></i>
+                    <span> MULTI </span>
+                </a>
+            </li>
+
+            <li class="side-nav-title">EMPLOI</li>
+
+            <li class="side-nav-item">
+                <a href="{{ path('admin_company_index') }}" class="side-nav-link">
+                    <i class="uil-clipboard-alt"></i>
+                    <span> ENTREPRISE </span>
+                </a>
+            </li>
+
+            <li class="side-nav-item">
+                <a href="#" class="side-nav-link">
+                    <i class="uil-clipboard-alt"></i>
+                    <span> OFFRE </span>
+                </a>
+            </li>
+
+
+        </ul>
+        <!--- End Sidemenu -->
+
+        <div class="clearfix"></div>
+    </div>
+</div>

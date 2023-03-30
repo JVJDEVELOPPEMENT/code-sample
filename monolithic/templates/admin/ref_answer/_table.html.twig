@@ -1,0 +1,24 @@
+<div class="table-responsive">
+    <table class="table nowrap w-100">
+        <thead>
+        <tr>
+            <th>Intitulé</th>
+            <th>Correct</th>
+            <th>Ajouté par</th>
+            <th>Ajouté le</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for refAnswer in refQuestion.refAnswers %}
+            <tr>
+                <td>{{ refAnswer.title }}</td>
+                <td>{{ refAnswer.isCorrect ? '<span class="text-success"><i class="uil-check-circle"></i></span>' : '<span class="text-danger"><i class="uil-times-circle"></i></span>' }}</td>
+                <td>{{ refAnswer.createdBy.displayName }} / {{ refAnswer.updatedBy ? refAnswer.updatedBy.displayName : '-' }}</td>
+                <td>{{ refAnswer.createdAt | date('d-m-Y') }} / {{ refAnswer.updatedAt ? (refAnswer.updatedAt |date('d-m-Y')) : '-' }}</td>
+                <td><a href="{{ path('admin_ref_question_delete_ref_answer',{'id': refAnswer.id}) }}" class="btn btn-sm btn-danger"><i class="uil-trash"></i></a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,12 @@
+{% for rubrique,messages in app.flashes %}
+    {% for message in messages %}
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-{{ rubrique }} alert-dismissible bg-{{ rubrique }} text-white border-0 fade show" role="alert">
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                    {{ message }}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endfor %}

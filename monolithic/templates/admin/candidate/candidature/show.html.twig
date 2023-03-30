@@ -1,0 +1,108 @@
+{% extends "admin/base_admin.html.twig" %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Candidat</a></li>
+                        <li class="breadcrumb-item active">Profil</li>
+                    </ol>
+                </div>
+                <h4 class="page-title">Candidat</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <a href="{{ path('admin_candidate_profile',{'id': candidature.candidate.id}) }}" class="btn btn-dark"><i class="uil-arrow-circle-left"></i> Revenir</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include "admin/common/_flash.html.twig" %}
+
+    <div class="row">
+        <div class="col-xl-4 col-lg-5">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="mb-3 text-uppercase"><i class="mdi mdi-cards-variant me-1"></i>
+                        Candidature
+                    </h5>
+                    <div>
+                        <p class="text-muted mb-2 font-13"><strong>Titre référence :</strong> <span class="ms-2">{{ candidature.refExamen.title }}</span></p>
+                        <p class="text-muted mb-2 font-13"><strong>Nombre de questions :</strong> <span class="ms-2 ">{{ candidature.refExamen.numberOfQuestions }}</span></p>
+                        <p class="text-muted mb-2 font-13"><strong>Temps :</strong> <span class="ms-2 ">{{ candidature.refExamen.numberOfMinutesToAnswer }} minutes</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="mb-3 text-uppercase"><i class="mdi mdi-frequently-asked-questions me-1"></i>
+                        Quiz
+                    </h5>
+                    <div>
+                        <p class="text-muted mb-2 font-13"><strong>Statut :</strong> <span class="ms-2">{{ candidature.quiz.status }}</span></p>
+                        <p class="text-muted mb-2 font-13"><strong>Démarré :</strong> <span class="ms-2">{{ candidature.quiz.startedAt ? (candidature.quiz.startedAt | date('d/m/Y H:i')) : '-' }}</span></p>
+                        <p class="text-muted mb-2 font-13"><strong>Terminé :</strong> <span class="ms-2">{{ candidature.quiz.finishedAt ? (candidature.quiz.finishedAt | date('d/m/Y H:i')) : '-' }}</span></p>
+                   </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="mb-3 text-uppercase"><i class="mdi mdi-frequently-asked-questions me-1"></i>
+                        LIEN QUIZ
+                    </h5>
+                    <div>
+                       <p class="text-muted mb-2 font-13"><a href="{{ path('public_quiz_show',{'tokenLink' : candidature.quiz.tokenLink }) }}">{{ url('public_quiz_show',{'tokenLink' : candidature.quiz.tokenLink }) }}</a></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-xl-8 col-lg-7">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="mb-3 text-uppercase"><i class="mdi mdi-frequently-asked-questions me-1"></i>
+                        Résultat
+                    </h5>
+                    <div>
+                        {% if candidature.quiz.status == constant('App\\Entity\\Quiz::PENDING') %}
+                            <p class="text-muted mb-2 font-13">Le candidat n'a pas encore passé le quiz.</p>
+                        {% elseif candidature.quiz.status == constant('App\\Entity\\Quiz::STARTED') %}
+                            <p class="text-muted mb-2 font-13">Le candidat est en train de passer le quiz.</p>
+                        {% elseif candidature.quiz.status == constant('App\\Entity\\Quiz::CANCELED') %}
+                            <p class="text-muted mb-2 font-13">Le quiz a été annulé.</p>
+                        {% elseif candidature.quiz.status == constant('App\\Entity\\Quiz::FINISHED') %}
+                            {% include "admin/candidate/candidature/_result.html.twig" %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            {% if candidature.quiz.status == constant('App\\Entity\\Quiz::FINISHED') %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="mb-3 text-uppercase"><i class="mdi mdi-frequently-asked-questions me-1"></i>
+                            Questions et Réponses
+                        </h5>
+                        <div>
+                            {% include "admin/candidate/candidature/_questions.html.twig" %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+
+{% endblock %}
